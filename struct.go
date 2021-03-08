@@ -35,6 +35,15 @@ type Ballot struct {
 // ---------------------------------------------------------------------------------------------------------------------
 // API :
 
+type Login struct {
+}
+
+type LoginReply struct {
+	UserID string							// ID of the user
+	Success bool							// Indicates if the operation was successful
+	Error string							// Error message
+}
+
 type OpenElection struct {
 	Name string								// Name of the election
 	AdminID string							// ID of the admin
