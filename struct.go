@@ -10,7 +10,8 @@ type ElectionResult map[string]uint32		// The result of the election, stored in 
 type ElectionStatus uint32
 const (
 	OnGoing = 1								//Ballots can be casted
-	Closed = 2								//The election is closed
+	Closed = 2								//The election has been closed by its admin
+	Canceled = 3							//The election has been canceled by its admin
 	//shuffle, ballots decryption ... ?
 )
 
@@ -85,6 +86,17 @@ type EndElection struct {
 }
 
 type EndElectionReply struct {
+	Result ElectionResult					// The result of the election
+	Success bool							// Indicates if the operation was successful
+	Error string							// Error message
+}
+
+type GetElectionResult struct {
+	ElectionID types.Digest 				// The digest of the first block of the election
+	UserID string							// ID of the user
+}
+
+type GetElectionResultReply struct {
 	Result ElectionResult					// The result of the election
 	Success bool							// Indicates if the operation was successful
 	Error string							// Error message
